@@ -57,6 +57,13 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // 処理を止めて中身を確認できる(attributesの中)
+        // dd($user);
+
+        // storage/logs/laravel.logにログが出力される
+        // 処理を止めない
+        logger()->debug($user);
+
         $this->guard()->login($user);
 
         return redirect()->route('memo.index');
